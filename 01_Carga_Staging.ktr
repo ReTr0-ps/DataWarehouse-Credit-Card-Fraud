@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<transformation>
+  <info>
+    <name>Credit Card Fraud - Carga a BD</name>
+    <description>Lee los 11 campos de credit_card_fraud_test.csv y los carga en MySQL.</description>
+    <extended_description>La fecha se convierte a Date usando MM/dd/yyyy. Los campos numéricos se leen como Integer; los valores vacíos de devoluciones y reclamaciones se mantienen nulos. El monto se conserva como texto para no perder el símbolo monetario.</extended_description>
+    <trans_version>1.0</trans_version>
+    <trans_type>Normal</trans_type>
+    <directory>/</directory>
+    <parameters />
+    <log />
+    <maxdate />
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file />
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+  </info>
+  <notepads />
+  <connection>
+    <name>BD_CREDIT_CARD</name>
+    <server>localhost</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>credit_card_db</database>
+    <port>3306</port>
+    <username>root</username>
+    <password />
+    <servername />
+    <data_tablespace />
+    <index_tablespace />
+    <attributes>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+    </attributes>
+  </connection>
+  <step>
+    <name>Leer CSV</name>
+    <type>CsvInput</type>
+    <description>Lee el CSV adjunto y reconoce los 11 campos.</description>
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method> </method>
+      <schema_name> </schema_name>
+    </partitioning>
+    <filename>${Internal.Transformation.Filename.Directory}/credit_card_fraud_test.csv</filename>
+    <filename_field />
+    <rownum_field />
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>N</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <encoding>UTF-8</encoding>
+    <fields>
+      <field>
+        <name>nombre_tarjeta</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>fecha</name>
+        <type>Date</type>
+        <format>MM/dd/yyyy</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>hora</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>3</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>monto</name>
+        <type>String</type>
+        <format />
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>20</length>
+        <precision>-1</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>tipo_tarjeta</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>2</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>intentos_cvv</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>3</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>comprador_recurrente</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>1</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>devoluciones</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>3</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>reclamaciones</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>3</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>total_compras</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>3</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+      <field>
+        <name>autorizacion</name>
+        <type>Integer</type>
+        <format>0</format>
+        <currency />
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>1</length>
+        <precision>0</precision>
+        <trim_type>both</trim_type>
+      </field>
+    </fields>
+    <attributes />
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Cargar en BD</name>
+    <type>TableOutput</type>
+    <description>Inserta los registros en la tabla credit_card_fraud_test de MySQL.</description>
+    <distribute>Y</distribute>
+    <custom_distribution />
+    <copies>1</copies>
+    <partitioning>
+      <method> </method>
+      <schema_name> </schema_name>
+    </partitioning>
+    <connection>BD_CREDIT_CARD</connection>
+    <schema />
+    <table>credit_card_fraud_test</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field />
+    <tablename_in_table>N</tablename_in_table>
+    <fields>
+      <field>
+        <column_name>nombre_tarjeta</column_name>
+        <stream_name>nombre_tarjeta</stream_name>
+      </field>
+      <field>
+        <column_name>fecha</column_name>
+        <stream_name>fecha</stream_name>
+      </field>
+      <field>
+        <column_name>hora</column_name>
+        <stream_name>hora</stream_name>
+      </field>
+      <field>
+        <column_name>monto</column_name>
+        <stream_name>monto</stream_name>
+      </field>
+      <field>
+        <column_name>tipo_tarjeta</column_name>
+        <stream_name>tipo_tarjeta</stream_name>
+      </field>
+      <field>
+        <column_name>intentos_cvv</column_name>
+        <stream_name>intentos_cvv</stream_name>
+      </field>
+      <field>
+        <column_name>comprador_recurrente</column_name>
+        <stream_name>comprador_recurrente</stream_name>
+      </field>
+      <field>
+        <column_name>devoluciones</column_name>
+        <stream_name>devoluciones</stream_name>
+      </field>
+      <field>
+        <column_name>reclamaciones</column_name>
+        <stream_name>reclamaciones</stream_name>
+      </field>
+      <field>
+        <column_name>total_compras</column_name>
+        <stream_name>total_compras</stream_name>
+      </field>
+      <field>
+        <column_name>autorizacion</column_name>
+        <stream_name>autorizacion</stream_name>
+      </field>
+    </fields>
+    <attributes />
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <order>
+    <hop>
+      <from>Leer CSV</from>
+      <to>Cargar en BD</to>
+      <enabled>Y</enabled>
+    </hop>
+  </order>
+  <step_error_handling />
+  <slave-step-copy-partition-distribution />
+  <slave_transformation />
+  <cluster_schema />
+  <created_user />
+  <created_date />
+  <modified_user />
+  <modified_date />
+  <attributes />
+  <metrics />
+</transformation>

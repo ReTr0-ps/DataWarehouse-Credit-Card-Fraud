@@ -1,0 +1,27 @@
+PROYECTO: DATA WAREHOUSE - FRAUDE CON TARJETAS DE CREDITO
+
+CONTENIDO
+00_Crear_DataWarehouse.sql: crea staging, dimensiones y tabla de hechos.
+01_Carga_Staging.ktr: carga los 11 campos del CSV a credit_card_fraud_test.
+02_Cargar_Dim_Tarjeta.ktr: carga dim_tarjeta.
+03_Cargar_Dim_Fecha.ktr: carga dim_fecha.
+04_Cargar_Dim_Autorizacion.ktr: carga dim_autorizacion.
+05_Cargar_Dim_Comprador.ktr: carga dim_comprador.
+06_Cargar_Fact_Transacciones.ktr: carga la tabla de hechos usando las claves generadas.
+credit_card_fraud_test.csv: archivo de origen.
+
+ORDEN DE EJECUCION
+1. Abrir 00_Crear_DataWarehouse.sql en MySQL Workbench y ejecutarlo.
+2. Abrir Spoon y configurar la conexión BD_CREDIT_CARD:
+   host localhost, puerto 3306, base credit_card_db, usuario root y contraseña local.
+3. Abrir 01_Carga_Staging.ktr y ejecutarlo. El CSV debe estar en la misma carpeta del KTR.
+4. Ejecutar en orden los KTR 02, 03, 04 y 05.
+5. Ejecutar 06_Cargar_Fact_Transacciones.ktr al final.
+6. Ejecutar las consultas de verificación del SQL.
+
+IMPORTANTE
+Los KTR y el SQL se han preparado a partir del dataset disponible (100 filas, 11 columnas).
+No se ha podido ejecutar Pentaho contra tu instalación local de MySQL desde este entorno.
+Por tanto, no afirmes que la carga ya fue ejecutada: completa la ejecución y captura las evidencias reales
+en Spoon y MySQL Workbench antes de entregar. Ajusta usuario/contraseña y driver JDBC MySQL según tu PC.
+El KTR original espera el CSV en la misma carpeta.
